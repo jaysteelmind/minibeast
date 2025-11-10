@@ -1,0 +1,69 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+minibeast
+minibeast-*
+
+# Test binaries
+*.test
+
+# Output files
+usb_layout/out/*
+!usb_layout/out/.gitkeep
+
+# Go workspace
+vendor/
+!vendor/llama.cpp/
+go.work
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.o
+*.a
+*.lib
+build/
+build-*/
+*.log
+
+# Temporary files
+/tmp/
+*.tmp
+
+# Model files (too large for git)
+*.gguf
+*.bin
+*.safetensors
+
+# Keep directory structure
+!.gitkeep
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Large vendor libraries (document how to build instead)
+vendor/llama.cpp-source/
+vendor/llama.cpp-windows/
+vendor/llama.cpp-darwin-*/
+
+# Keep the Linux vendor (already built)
+!vendor/llama.cpp/

@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>config: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/minibeast/usb-agent/src/core/config/loader.go (0.0%)</option>
+				
+				<option value="file1">github.com/minibeast/usb-agent/src/core/config/types.go (0.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package config
+
+import (
+        "fmt"
+        "os"
+
+        "gopkg.in/yaml.v3"
+)
+
+// Load reads and parses a YAML configuration file
+// Mathematical guarantee: Returns valid Config or error (never invalid Config)
+// Complexity: O(n) where n = file size
+func Load(path string) (*Config, error) <span class="cov0" title="0">{
+        // Read file with atomic operation
+        data, err := os.ReadFile(path)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("failed to read config file: %w", err)
+        }</span>
+
+        // Parse YAML
+        <span class="cov0" title="0">cfg := Default() // Start with defaults
+        if err := yaml.Unmarshal(data, cfg); err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("failed to parse config YAML: %w", err)
+        }</span>
+
+        // Validate mathematical invariants
+        <span class="cov0" title="0">if err := cfg.Validate(); err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("config validation failed: %w", err)
+        }</span>
+
+        <span class="cov0" title="0">return cfg, nil</span>
+}
+
+// LoadOrDefault attempts to load config, returns default on failure
+// Mathematical guarantee: Always returns valid Config (never nil)
+// Complexity: O(n) where n = file size
+func LoadOrDefault(path string) *Config <span class="cov0" title="0">{
+        cfg, err := Load(path)
+        if err != nil </span><span class="cov0" title="0">{
+                // Graceful degradation: use defaults
+                return Default()
+        }</span>
+        <span class="cov0" title="0">return cfg</span>
+}
+
+// Save writes configuration to YAML file
+// Mathematical guarantee: Atomic write (complete or nothing)
+// Complexity: O(n) where n = config size
+func Save(cfg *Config, path string) error <span class="cov0" title="0">{
+        // Validate before saving
+        if err := cfg.Validate(); err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("cannot save invalid config: %w", err)
+        }</span>
+
+        // Marshal to YAML
+        <span class="cov0" title="0">data, err := yaml.Marshal(cfg)
+        if err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("failed to marshal config: %w", err)
+        }</span>
+
+        // Atomic write pattern: write to temp, then rename
+        <span class="cov0" title="0">tempPath := path + ".tmp"
+        if err := os.WriteFile(tempPath, data, 0644); err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("failed to write temp config: %w", err)
+        }</span>
+
+        // Atomic rename
+        <span class="cov0" title="0">if err := os.Rename(tempPath, path); err != nil </span><span class="cov0" title="0">{
+                os.Remove(tempPath) // Cleanup on failure
+                return fmt.Errorf("failed to rename config: %w", err)
+        }</span>
+
+        <span class="cov0" title="0">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package config
+
+import "time"
+
+// Config represents the complete MiniBeast configuration
+// Mathematical invariant: All fields have valid defaults
+type Config struct {
+        // PII collection toggle
+        PII bool `yaml:"pii"`
+
+        // Collection settings
+        Collect CollectConfig `yaml:"collect"`
+
+        // Output settings
+        Output OutputConfig `yaml:"output"`
+
+        // LLM settings (Phase 2 stub)
+        LLM LLMConfig `yaml:"llm"`
+
+        // Performance settings
+        Performance PerformanceConfig `yaml:"performance"`
+}
+
+// CollectConfig defines data collection parameters
+type CollectConfig struct {
+        // Extended collection (future enhancement)
+        Extended bool `yaml:"extended"`
+
+        // WiFi SSID collection
+        WiFiSSIDs bool `yaml:"wifi_ssids"`
+
+        // Hardware ID collection
+        HardwareIDs bool `yaml:"hardware_ids"`
+
+        // Per-category timeout (milliseconds)
+        CategoryTimeoutMs int `yaml:"category_timeout_ms"`
+}
+
+// OutputConfig defines output file settings
+type OutputConfig struct {
+        // Enable encryption (Phase 2 feature)
+        Encrypt bool `yaml:"encrypt"`
+
+        // Enable Ed25519 signing
+        Sign bool `yaml:"sign"`
+
+        // Fields to redact from output
+        Redact []string `yaml:"redact"`
+
+        // Output directory (relative to USB root)
+        Directory string `yaml:"directory"`
+}
+
+// LLMConfig defines LLM inference settings (Phase 2)
+type LLMConfig struct {
+        // Enable LLM summarization
+        Enabled bool `yaml:"enabled"`
+
+        // Maximum tokens to generate
+        MaxTokens int `yaml:"max_tokens"`
+
+        // Temperature for sampling
+        Temperature float64 `yaml:"temp"`
+
+        // Model path (relative to USB root)
+        ModelPath string `yaml:"model_path"`
+}
+
+// PerformanceConfig defines performance constraints
+type PerformanceConfig struct {
+        // Maximum goroutines for parallel collection
+        MaxGoroutines int `yaml:"max_goroutines"`
+
+        // Total Phase 1 timeout (milliseconds)
+        Phase1TimeoutMs int `yaml:"phase1_timeout_ms"`
+
+        // Total Phase 2 timeout (milliseconds)
+        Phase2TimeoutMs int `yaml:"phase2_timeout_ms"`
+}
+
+// Default returns a Config with mathematical default values
+// Complexity: O(1)
+func Default() *Config <span class="cov0" title="0">{
+        return &amp;Config{
+                PII: true,
+                Collect: CollectConfig{
+                        Extended:          false,
+                        WiFiSSIDs:         true,
+                        HardwareIDs:       true,
+                        CategoryTimeoutMs: 500, // 500ms per category
+                },
+                Output: OutputConfig{
+                        Encrypt:   false,
+                        Sign:      true,
+                        Redact:    []string{},
+                        Directory: "out",
+                },
+                LLM: LLMConfig{
+                        Enabled:     true,
+                        MaxTokens:   160,
+                        Temperature: 0.1,
+                        ModelPath:   "models/tinyllama-1.1b-q4.gguf",
+                },
+                Performance: PerformanceConfig{
+                        MaxGoroutines:   8,
+                        Phase1TimeoutMs: 2000, // 2 seconds
+                        Phase2TimeoutMs: 3000, // 3 seconds
+                },
+        }
+}</span>
+
+// Validate checks configuration mathematical invariants
+// Returns error if invariants violated
+// Complexity: O(1)
+func (c *Config) Validate() error <span class="cov0" title="0">{
+        // Validate positive timeouts
+        if c.Collect.CategoryTimeoutMs &lt;= 0 </span><span class="cov0" title="0">{
+                return &amp;ValidationError{Field: "collect.category_timeout_ms", Reason: "must be positive"}
+        }</span>
+        <span class="cov0" title="0">if c.Performance.Phase1TimeoutMs &lt;= 0 </span><span class="cov0" title="0">{
+                return &amp;ValidationError{Field: "performance.phase1_timeout_ms", Reason: "must be positive"}
+        }</span>
+        <span class="cov0" title="0">if c.Performance.Phase2TimeoutMs &lt;= 0 </span><span class="cov0" title="0">{
+                return &amp;ValidationError{Field: "performance.phase2_timeout_ms", Reason: "must be positive"}
+        }</span>
+
+        // Validate goroutine bounds (prevent resource exhaustion)
+        <span class="cov0" title="0">if c.Performance.MaxGoroutines &lt; 1 || c.Performance.MaxGoroutines &gt; 32 </span><span class="cov0" title="0">{
+                return &amp;ValidationError{Field: "performance.max_goroutines", Reason: "must be between 1 and 32"}
+        }</span>
+
+        // Validate LLM parameters
+        <span class="cov0" title="0">if c.LLM.MaxTokens &lt; 1 || c.LLM.MaxTokens &gt; 2048 </span><span class="cov0" title="0">{
+                return &amp;ValidationError{Field: "llm.max_tokens", Reason: "must be between 1 and 2048"}
+        }</span>
+        <span class="cov0" title="0">if c.LLM.Temperature &lt; 0.0 || c.LLM.Temperature &gt; 2.0 </span><span class="cov0" title="0">{
+                return &amp;ValidationError{Field: "llm.temperature", Reason: "must be between 0.0 and 2.0"}
+        }</span>
+
+        <span class="cov0" title="0">return nil</span>
+}
+
+// GetCategoryTimeout returns the timeout duration for category collection
+// Complexity: O(1)
+func (c *Config) GetCategoryTimeout() time.Duration <span class="cov0" title="0">{
+        return time.Duration(c.Collect.CategoryTimeoutMs) * time.Millisecond
+}</span>
+
+// GetPhase1Timeout returns the total timeout for Phase 1
+// Complexity: O(1)
+func (c *Config) GetPhase1Timeout() time.Duration <span class="cov0" title="0">{
+        return time.Duration(c.Performance.Phase1TimeoutMs) * time.Millisecond
+}</span>
+
+// GetPhase2Timeout returns the total timeout for Phase 2
+// Complexity: O(1)
+func (c *Config) GetPhase2Timeout() time.Duration <span class="cov0" title="0">{
+        return time.Duration(c.Performance.Phase2TimeoutMs) * time.Millisecond
+}</span>
+
+// ValidationError represents a configuration validation failure
+type ValidationError struct {
+        Field  string
+        Reason string
+}
+
+func (e *ValidationError) Error() string <span class="cov0" title="0">{
+        return "config validation failed: " + e.Field + " - " + e.Reason
+}</span>
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

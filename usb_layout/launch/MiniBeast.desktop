@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=MiniBeast USB Agent
+Comment=Run MiniBeast system analysis
+Exec=sh -c 'cd "$(dirname "$0")/.." && ./bin/minibeast-linux --root "$(dirname "$0")/.." --config "$(dirname "$0")/../config/default.yaml" && read -p "Press Enter to close..."'
+Icon=computer
+Terminal=true
+Categories=System;Utility;

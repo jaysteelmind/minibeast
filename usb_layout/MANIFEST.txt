@@ -1,0 +1,47 @@
+MiniBeast USB Agent - Package Manifest
+Generated: Sun Nov  9 07:08:13 PM CST 2025
+Version: 1.0.0
+
+Directory Structure:
+-------------------
+bin/          Executables for all platforms
+config/       Configuration files
+launch/       Autorun launchers
+models/       AI model files
+out/          Output directory (created on first run)
+docs/         Documentation (optional)
+
+Package Size: 481M
+
+Included Files:
+--------------
+36 files total
+
+Binaries:
+total 20M
+-rwxrwxr-x 1 redblack redblack 3.9M Nov  9 15:33 minibeast-darwin-amd64
+-rwxrwxr-x 1 redblack redblack 3.8M Nov  9 15:33 minibeast-darwin-arm64
+-rwxrwxr-x 1 redblack redblack 7.5M Nov  9 18:57 minibeast-linux
+-rwxrwxr-x 1 redblack redblack 4.1M Nov  9 15:33 minibeast-win.exe
+
+Model:
+-rw-rw-r-- 1 redblack redblack 461M Nov  9 18:37 usb_layout/models/tinyllama-1.1b-chat-v1.0.Q2_K.gguf
+
+Configuration:
+total 4.0K
+-rw-rw-r-- 1 redblack redblack 601 Nov  9 18:56 default.yaml
+
+Launchers:
+total 16K
+-rwxrwxr-x 1 redblack redblack 340 Nov  9 19:01 MiniBeast.desktop
+-rw-rw-r-- 1 redblack redblack 748 Nov  9 19:01 Run-MiniBeast.bat
+-rwxrwxr-x 1 redblack redblack 987 Nov  9 19:01 Run-MiniBeast.command
+-rwxrwxr-x 1 redblack redblack 950 Nov  9 19:01 Run-MiniBeast.sh
+
+Installation:
+------------
+1. Format USB stick as exFAT (recommended) or FAT32
+2. Copy entire usb_layout contents to USB root
+3. Safely eject
+4. Ready for deployment!
+

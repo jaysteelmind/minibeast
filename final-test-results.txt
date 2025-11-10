@@ -1,0 +1,267 @@
+	github.com/minibeast/usb-agent/cmd/minibeast		coverage: 0.0% of statements
+	github.com/minibeast/usb-agent/src/core/collection		coverage: 0.0% of statements
+=== RUN   TestDefault
+--- PASS: TestDefault (0.00s)
+=== RUN   TestValidate_Valid
+--- PASS: TestValidate_Valid (0.00s)
+=== RUN   TestValidate_InvalidTimeouts
+=== RUN   TestValidate_InvalidTimeouts/zero_category_timeout
+=== RUN   TestValidate_InvalidTimeouts/negative_category_timeout
+=== RUN   TestValidate_InvalidTimeouts/zero_phase1_timeout
+=== RUN   TestValidate_InvalidTimeouts/negative_phase2_timeout
+--- PASS: TestValidate_InvalidTimeouts (0.00s)
+    --- PASS: TestValidate_InvalidTimeouts/zero_category_timeout (0.00s)
+    --- PASS: TestValidate_InvalidTimeouts/negative_category_timeout (0.00s)
+    --- PASS: TestValidate_InvalidTimeouts/zero_phase1_timeout (0.00s)
+    --- PASS: TestValidate_InvalidTimeouts/negative_phase2_timeout (0.00s)
+=== RUN   TestValidate_InvalidGoroutines
+=== RUN   TestValidate_InvalidGoroutines/zero_goroutines
+=== RUN   TestValidate_InvalidGoroutines/negative_goroutines
+=== RUN   TestValidate_InvalidGoroutines/too_many_goroutines
+=== RUN   TestValidate_InvalidGoroutines/way_too_many_goroutines
+--- PASS: TestValidate_InvalidGoroutines (0.00s)
+    --- PASS: TestValidate_InvalidGoroutines/zero_goroutines (0.00s)
+    --- PASS: TestValidate_InvalidGoroutines/negative_goroutines (0.00s)
+    --- PASS: TestValidate_InvalidGoroutines/too_many_goroutines (0.00s)
+    --- PASS: TestValidate_InvalidGoroutines/way_too_many_goroutines (0.00s)
+=== RUN   TestValidate_InvalidLLMParams
+=== RUN   TestValidate_InvalidLLMParams/zero_max_tokens
+=== RUN   TestValidate_InvalidLLMParams/too_many_tokens
+=== RUN   TestValidate_InvalidLLMParams/negative_temperature
+=== RUN   TestValidate_InvalidLLMParams/temperature_too_high
+--- PASS: TestValidate_InvalidLLMParams (0.00s)
+    --- PASS: TestValidate_InvalidLLMParams/zero_max_tokens (0.00s)
+    --- PASS: TestValidate_InvalidLLMParams/too_many_tokens (0.00s)
+    --- PASS: TestValidate_InvalidLLMParams/negative_temperature (0.00s)
+    --- PASS: TestValidate_InvalidLLMParams/temperature_too_high (0.00s)
+=== RUN   TestGetTimeouts
+--- PASS: TestGetTimeouts (0.00s)
+=== RUN   TestLoad_ValidYAML
+--- PASS: TestLoad_ValidYAML (0.00s)
+=== RUN   TestLoad_NonExistentFile
+--- PASS: TestLoad_NonExistentFile (0.00s)
+=== RUN   TestLoad_InvalidYAML
+--- PASS: TestLoad_InvalidYAML (0.00s)
+=== RUN   TestLoad_InvalidConfig
+--- PASS: TestLoad_InvalidConfig (0.00s)
+=== RUN   TestLoadOrDefault_Success
+--- PASS: TestLoadOrDefault_Success (0.00s)
+=== RUN   TestLoadOrDefault_Fallback
+--- PASS: TestLoadOrDefault_Fallback (0.00s)
+=== RUN   TestSave
+--- PASS: TestSave (0.00s)
+=== RUN   TestSave_InvalidConfig
+--- PASS: TestSave_InvalidConfig (0.00s)
+=== RUN   TestSave_AtomicWrite
+--- PASS: TestSave_AtomicWrite (0.00s)
+PASS
+coverage: 90.7% of statements
+ok  	github.com/minibeast/usb-agent/src/core/config	0.006s	coverage: 90.7% of statements
+=== RUN   TestGenerateKeyPair
+--- PASS: TestGenerateKeyPair (0.00s)
+=== RUN   TestSaveLoadPrivateKey
+--- PASS: TestSaveLoadPrivateKey (0.00s)
+=== RUN   TestSaveLoadPublicKey
+--- PASS: TestSaveLoadPublicKey (0.00s)
+=== RUN   TestSignVerify
+--- PASS: TestSignVerify (0.00s)
+=== RUN   TestVerify_InvalidSignature
+--- PASS: TestVerify_InvalidSignature (0.00s)
+=== RUN   TestVerify_ModifiedData
+--- PASS: TestVerify_ModifiedData (0.00s)
+=== RUN   TestSignFile
+--- PASS: TestSignFile (0.00s)
+=== RUN   TestVerifyFile
+--- PASS: TestVerifyFile (0.00s)
+=== RUN   TestSaveLoadSignature
+--- PASS: TestSaveLoadSignature (0.00s)
+=== RUN   TestSign_NoPrivateKey
+--- PASS: TestSign_NoPrivateKey (0.00s)
+=== RUN   TestLoadPrivateKey_InvalidFile
+--- PASS: TestLoadPrivateKey_InvalidFile (0.00s)
+=== RUN   TestLoadPrivateKey_InvalidPEM
+--- PASS: TestLoadPrivateKey_InvalidPEM (0.00s)
+=== RUN   TestSaveSignature_InvalidSize
+--- PASS: TestSaveSignature_InvalidSize (0.00s)
+PASS
+coverage: 72.7% of statements
+ok  	github.com/minibeast/usb-agent/src/core/crypto	0.008s	coverage: 72.7% of statements
+?   	github.com/minibeast/usb-agent/src/core/platform/types	[no test files]
+	github.com/minibeast/usb-agent/src/core/platform/windows		coverage: 0.0% of statements
+	github.com/minibeast/usb-agent/src/core/platform/darwin		coverage: 0.0% of statements
+	github.com/minibeast/usb-agent/src/core/platform		coverage: 0.0% of statements
+	github.com/minibeast/usb-agent/src/core/platform/linux		coverage: 0.0% of statements
+	github.com/minibeast/usb-agent/src/core/summarizer		coverage: 0.0% of statements
+=== RUN   TestNewEngine
+--- PASS: TestNewEngine (0.00s)
+=== RUN   TestGenerateDeterministicSeed
+--- PASS: TestGenerateDeterministicSeed (0.00s)
+=== RUN   TestPromptBuilder
+--- PASS: TestPromptBuilder (0.00s)
+=== RUN   TestEstimateTokenCount
+--- PASS: TestEstimateTokenCount (0.00s)
+=== RUN   TestParser
+--- PASS: TestParser (0.00s)
+=== RUN   TestParserEmptyOutput
+--- PASS: TestParserEmptyOutput (0.00s)
+=== RUN   TestParserNoSummary
+--- PASS: TestParserNoSummary (0.00s)
+=== RUN   TestValidate
+--- PASS: TestValidate (0.00s)
+=== RUN   TestValidateShortSummary
+--- PASS: TestValidateShortSummary (0.00s)
+=== RUN   TestFormat
+--- PASS: TestFormat (0.00s)
+=== RUN   TestCleanOutput
+--- PASS: TestCleanOutput (0.00s)
+PASS
+coverage: 25.5% of statements
+ok  	github.com/minibeast/usb-agent/src/core/inference	0.005s	coverage: 25.5% of statements
+=== RUN   TestWriteAtomic
+--- PASS: TestWriteAtomic (0.00s)
+=== RUN   TestWriteAtomic_CreateDirectory
+--- PASS: TestWriteAtomic_CreateDirectory (0.00s)
+=== RUN   TestWriteJSON
+--- PASS: TestWriteJSON (0.00s)
+=== RUN   TestWriteBinary
+--- PASS: TestWriteBinary (0.00s)
+=== RUN   TestReadFile
+--- PASS: TestReadFile (0.00s)
+=== RUN   TestReadFile_NonExistent
+--- PASS: TestReadFile_NonExistent (0.00s)
+=== RUN   TestReadJSON
+--- PASS: TestReadJSON (0.00s)
+=== RUN   TestReadJSON_InvalidJSON
+--- PASS: TestReadJSON_InvalidJSON (0.00s)
+=== RUN   TestGetFileSize
+--- PASS: TestGetFileSize (0.00s)
+=== RUN   TestGetFileSize_NonExistent
+--- PASS: TestGetFileSize_NonExistent (0.00s)
+=== RUN   TestEnsureDirectory
+--- PASS: TestEnsureDirectory (0.00s)
+=== RUN   TestEnsureDirectory_AlreadyExists
+--- PASS: TestEnsureDirectory_AlreadyExists (0.00s)
+=== RUN   TestFileExists
+--- PASS: TestFileExists (0.00s)
+=== RUN   TestWriteAtomic_Overwrite
+--- PASS: TestWriteAtomic_Overwrite (0.00s)
+PASS
+coverage: 70.0% of statements
+ok  	github.com/minibeast/usb-agent/src/core/io	0.020s	coverage: 70.0% of statements
+=== RUN   TestDefault
+--- PASS: TestDefault (0.00s)
+=== RUN   TestValidate_Valid
+--- PASS: TestValidate_Valid (0.00s)
+=== RUN   TestValidate_InvalidTimeouts
+=== RUN   TestValidate_InvalidTimeouts/zero_category_timeout
+=== RUN   TestValidate_InvalidTimeouts/negative_category_timeout
+=== RUN   TestValidate_InvalidTimeouts/zero_phase1_timeout
+=== RUN   TestValidate_InvalidTimeouts/negative_phase2_timeout
+--- PASS: TestValidate_InvalidTimeouts (0.00s)
+    --- PASS: TestValidate_InvalidTimeouts/zero_category_timeout (0.00s)
+    --- PASS: TestValidate_InvalidTimeouts/negative_category_timeout (0.00s)
+    --- PASS: TestValidate_InvalidTimeouts/zero_phase1_timeout (0.00s)
+    --- PASS: TestValidate_InvalidTimeouts/negative_phase2_timeout (0.00s)
+=== RUN   TestValidate_InvalidGoroutines
+=== RUN   TestValidate_InvalidGoroutines/zero_goroutines
+=== RUN   TestValidate_InvalidGoroutines/negative_goroutines
+=== RUN   TestValidate_InvalidGoroutines/too_many_goroutines
+=== RUN   TestValidate_InvalidGoroutines/way_too_many_goroutines
+--- PASS: TestValidate_InvalidGoroutines (0.00s)
+    --- PASS: TestValidate_InvalidGoroutines/zero_goroutines (0.00s)
+    --- PASS: TestValidate_InvalidGoroutines/negative_goroutines (0.00s)
+    --- PASS: TestValidate_InvalidGoroutines/too_many_goroutines (0.00s)
+    --- PASS: TestValidate_InvalidGoroutines/way_too_many_goroutines (0.00s)
+=== RUN   TestValidate_InvalidLLMParams
+=== RUN   TestValidate_InvalidLLMParams/zero_max_tokens
+=== RUN   TestValidate_InvalidLLMParams/too_many_tokens
+=== RUN   TestValidate_InvalidLLMParams/negative_temperature
+=== RUN   TestValidate_InvalidLLMParams/temperature_too_high
+--- PASS: TestValidate_InvalidLLMParams (0.00s)
+    --- PASS: TestValidate_InvalidLLMParams/zero_max_tokens (0.00s)
+    --- PASS: TestValidate_InvalidLLMParams/too_many_tokens (0.00s)
+    --- PASS: TestValidate_InvalidLLMParams/negative_temperature (0.00s)
+    --- PASS: TestValidate_InvalidLLMParams/temperature_too_high (0.00s)
+=== RUN   TestGetTimeouts
+--- PASS: TestGetTimeouts (0.00s)
+=== RUN   TestLoad_ValidYAML
+--- PASS: TestLoad_ValidYAML (0.00s)
+=== RUN   TestLoad_NonExistentFile
+--- PASS: TestLoad_NonExistentFile (0.00s)
+=== RUN   TestLoad_InvalidYAML
+--- PASS: TestLoad_InvalidYAML (0.00s)
+=== RUN   TestLoad_InvalidConfig
+--- PASS: TestLoad_InvalidConfig (0.00s)
+=== RUN   TestLoadOrDefault_Success
+--- PASS: TestLoadOrDefault_Success (0.00s)
+=== RUN   TestLoadOrDefault_Fallback
+--- PASS: TestLoadOrDefault_Fallback (0.00s)
+=== RUN   TestSave
+--- PASS: TestSave (0.00s)
+=== RUN   TestSave_InvalidConfig
+--- PASS: TestSave_InvalidConfig (0.00s)
+=== RUN   TestSave_AtomicWrite
+--- PASS: TestSave_AtomicWrite (0.00s)
+PASS
+coverage: [no statements]
+ok  	github.com/minibeast/usb-agent/tests/unit/config	(cached)	coverage: [no statements]
+=== RUN   TestGenerateKeyPair
+--- PASS: TestGenerateKeyPair (0.00s)
+=== RUN   TestSaveLoadPrivateKey
+--- PASS: TestSaveLoadPrivateKey (0.00s)
+=== RUN   TestSaveLoadPublicKey
+--- PASS: TestSaveLoadPublicKey (0.00s)
+=== RUN   TestSignVerify
+--- PASS: TestSignVerify (0.00s)
+=== RUN   TestVerify_InvalidSignature
+--- PASS: TestVerify_InvalidSignature (0.00s)
+=== RUN   TestVerify_ModifiedData
+--- PASS: TestVerify_ModifiedData (0.00s)
+=== RUN   TestSignFile
+--- PASS: TestSignFile (0.00s)
+=== RUN   TestVerifyFile
+--- PASS: TestVerifyFile (0.00s)
+=== RUN   TestSaveLoadSignature
+--- PASS: TestSaveLoadSignature (0.00s)
+=== RUN   TestSign_NoPrivateKey
+--- PASS: TestSign_NoPrivateKey (0.00s)
+=== RUN   TestLoadPrivateKey_InvalidFile
+--- PASS: TestLoadPrivateKey_InvalidFile (0.00s)
+=== RUN   TestLoadPrivateKey_InvalidPEM
+--- PASS: TestLoadPrivateKey_InvalidPEM (0.00s)
+=== RUN   TestSaveSignature_InvalidSize
+--- PASS: TestSaveSignature_InvalidSize (0.00s)
+PASS
+coverage: [no statements]
+ok  	github.com/minibeast/usb-agent/tests/unit/crypto	0.008s	coverage: [no statements]
+=== RUN   TestWriteAtomic
+--- PASS: TestWriteAtomic (0.00s)
+=== RUN   TestWriteAtomic_CreateDirectory
+--- PASS: TestWriteAtomic_CreateDirectory (0.00s)
+=== RUN   TestWriteJSON
+--- PASS: TestWriteJSON (0.00s)
+=== RUN   TestWriteBinary
+--- PASS: TestWriteBinary (0.00s)
+=== RUN   TestReadFile
+--- PASS: TestReadFile (0.00s)
+=== RUN   TestReadFile_NonExistent
+--- PASS: TestReadFile_NonExistent (0.00s)
+=== RUN   TestReadJSON
+--- PASS: TestReadJSON (0.00s)
+=== RUN   TestReadJSON_InvalidJSON
+--- PASS: TestReadJSON_InvalidJSON (0.00s)
+=== RUN   TestGetFileSize
+--- PASS: TestGetFileSize (0.00s)
+=== RUN   TestGetFileSize_NonExistent
+--- PASS: TestGetFileSize_NonExistent (0.00s)
+=== RUN   TestEnsureDirectory
+--- PASS: TestEnsureDirectory (0.00s)
+=== RUN   TestEnsureDirectory_AlreadyExists
+--- PASS: TestEnsureDirectory_AlreadyExists (0.00s)
+=== RUN   TestFileExists
+--- PASS: TestFileExists (0.00s)
+=== RUN   TestWriteAtomic_Overwrite
+--- PASS: TestWriteAtomic_Overwrite (0.00s)
+PASS
+coverage: [no statements]
+ok  	github.com/minibeast/usb-agent/tests/unit/io	0.019s	coverage: [no statements]

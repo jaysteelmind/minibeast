@@ -1,0 +1,32 @@
+# MiniBeast USB Agent Configuration
+# Phase 1 + Phase 2: Complete Pipeline
+
+# PII Collection (Personally Identifiable Information)
+pii: true
+
+# Collection Settings
+collect:
+  extended: false
+  wifi_ssids: true
+  hardware_ids: true
+  category_timeout_ms: 500
+
+# Output Settings
+output:
+  encrypt: false
+  sign: true
+  redact: []
+  directory: "out"
+
+# LLM Settings (Phase 2 - ENABLED)
+llm:
+  enabled: true
+  max_tokens: 160
+  temp: 0.1
+  model_path: "models/tinyllama-1.1b-chat-v1.0.Q2_K.gguf"
+
+# Performance Settings
+performance:
+  max_goroutines: 8
+  phase1_timeout_ms: 2000
+  phase2_timeout_ms: 3000
